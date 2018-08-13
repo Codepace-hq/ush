@@ -3,9 +3,11 @@ require 'ush/db/sqlite'
 module Ush
   # The sinatra app that runs ush
   class App < Sinatra::Base
+
     set :server, 'webrick'
     set :environment, :production
-    set :port, 80
+    set :port, 8080
+
     db = Ush::Sqlite.new
 
     get '/' do

@@ -1,3 +1,3 @@
 module Ush
-  VERSION = '0.1.0b'.freeze
+  VERSION = '0.1.1'.freeze
 end

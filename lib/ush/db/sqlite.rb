@@ -3,16 +3,15 @@ require 'fileutils'
 
 module Ush
   class Sqlite
-
     # An accessor to the underlying Sqlite3::Database instance
     attr_accessor :db
 
     # Initializes the database connection and creates the table if it doesn't exist already
-    def initialize(file = File.expand_path(File.join(File.dirname(__FILE__), "../../../db/ush.sqlite.db")))
-      FileUtils.touch(file) unless File.exists?(file) # create the db if it doesnt already exist
+    def initialize(file = File.expand_path(File.join(File.dirname(__FILE__), '../../../db/ush.sqlite.db')))
+      FileUtils.touch(file) unless File.exist?(file) # create the db if it doesnt already exist
       puts "Database is being stored at #{file}"
       @db = SQLite3::Database.new(file)
-      @db.execute "CREATE TABLE IF NOT EXISTS pairings(url TEXT, code TEXT)"
+      @db.execute 'CREATE TABLE IF NOT EXISTS pairings(url TEXT, code TEXT)'
     end
 
     # Adds a url and shortcode association to the database
@@ -30,7 +29,7 @@ module Ush
       statement = @db.prepare("SELECT * FROM pairings WHERE code='#{code}'")
       rs = statement.execute
       rs.each do |row|
-        return row[0] #if row.class == Array # This is the first url, shouldn't be more than one.
+        return row[0] # if row.class == Array # This is the first url, shouldn't be more than one.
       end
     rescue SQLite3::Exception => e
       puts "Unable to get url for code #{code}"
