@@ -1,9 +1,11 @@
 require 'sinatra/base'
-require "ush/db/sqlite"
+require 'ush/db/sqlite'
 module Ush
   # The sinatra app that runs ush
   class App < Sinatra::Base
     set :server, 'webrick'
+    set :environment, :production
+    set :port, 80
     db = Ush::Sqlite.new
 
     get '/' do
