@@ -3,7 +3,7 @@ PATH
   specs:
     ush (0.1.1)
       addressable (~> 2.3.0)
-      sinatra (~> 2.0)
+      sinatra (~> 2.0.2)
       sqlite3
 
 GEM
